@@ -34,7 +34,7 @@ static const NSInteger kDefaultMaxDistance  = 10000;
 @interface DBMapSelectorManager () {
     BOOL                            _isFirstTimeApplySelectorSettings;
     UIView                          *_radiusTouchView;
-    UILongPressGestureRecognizer    *_longPressGestureRecognizer;
+    UITapGestureRecognizer          *_longPressGestureRecognizer;
 }
 
 @property (strong, nonatomic) DBMapSelectorOverlay          *selectorOverlay;
@@ -71,7 +71,7 @@ static const NSInteger kDefaultMaxDistance  = 10000;
 //    [self.mapView addSubview:_radiusTouchView];
 #endif
 
-    _longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressGestureRecognizer:)];
+    _longPressGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(longPressGestureRecognizer:)];
     
     _mapViewGestureEnabled = YES;
     [self.mapView addGestureRecognizer:[self selectorGestureRecognizer]];
@@ -172,8 +172,8 @@ static const NSInteger kDefaultMaxDistance  = 10000;
     return selectorGestureRecognizer;
 }
 
-- (void)longPressGestureRecognizer:(UILongPressGestureRecognizer *)gestureRecognizer {
-    if ([gestureRecognizer isKindOfClass:[UILongPressGestureRecognizer class]] &&
+- (void)longPressGestureRecognizer:(UITapGestureRecognizer *)gestureRecognizer {
+    if ([gestureRecognizer isKindOfClass:[UITapGestureRecognizer class]] &&
         ( self.editingType == DBMapSelectorEditingTypeFull || self.editingType == DBMapSelectorEditingTypeCoordinateOnly )) {
         switch (gestureRecognizer.state) {
             case UIGestureRecognizerStateBegan: {
