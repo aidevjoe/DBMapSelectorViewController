@@ -175,22 +175,22 @@ static const NSInteger kDefaultMaxDistance  = 10000;
 - (void)longPressGestureRecognizer:(UITapGestureRecognizer *)gestureRecognizer {
     if ([gestureRecognizer isKindOfClass:[UITapGestureRecognizer class]] &&
         ( self.editingType == DBMapSelectorEditingTypeFull || self.editingType == DBMapSelectorEditingTypeCoordinateOnly )) {
-        switch (gestureRecognizer.state) {
-            case UIGestureRecognizerStateBegan: {
-                CGPoint touchPoint = [gestureRecognizer locationInView:self.mapView];
-                CLLocationCoordinate2D coord = [self.mapView convertPoint:touchPoint toCoordinateFromView:self.mapView];
-                self.circleCoordinate = coord;
-                [self displaySelectorAnnotationIfNeeded];
-                break;
-            }
-            case UIGestureRecognizerStateEnded:
-                if (NO == MKMapRectContainsRect(self.mapView.visibleMapRect, _selectorOverlay.boundingMapRect)) {
+//         switch (gestureRecognizer.state) {
+//             case UIGestureRecognizerStateBegan: {
+//                 CGPoint touchPoint = [gestureRecognizer locationInView:self.mapView];
+//                 CLLocationCoordinate2D coord = [self.mapView convertPoint:touchPoint toCoordinateFromView:self.mapView];
+//                 self.circleCoordinate = coord;
+//                 [self displaySelectorAnnotationIfNeeded];
+//                 break;
+//             }
+//             case UIGestureRecognizerStateEnded:
+//                 if (NO == MKMapRectContainsRect(self.mapView.visibleMapRect, _selectorOverlay.boundingMapRect)) {
                     [self updateMapRegionForMapSelector];
-                }
-                break;
-            default:
-                break;
-        }
+//                 }
+//                 break;
+//             default:
+//                 break;
+//         }
     }
 }
 
